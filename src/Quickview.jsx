@@ -16,6 +16,7 @@ const DEFAULT_QUERY = 'How could I style this jacket for a night out with friend
 export default function Quickview({ onClose }) {
   const [side, setSide] = useState('black') // 'black' | 'orange'
   const [size, setSize] = useState('M')
+  const [qty, setQty] = useState(1)
   const [open, setOpen] = useState({}) // accordion map
   const [chatOpen, setChatOpen] = useState(false)
   const [query, setQuery] = useState(null)
@@ -244,14 +245,14 @@ export default function Quickview({ onClose }) {
 
           {/* Right: product detail */}
           <div className="qv-right">
+            <h3 className="qv-title">MA-1 Bomber Jacket (Heritage)</h3>
+            <div className="qv-price">$200.00</div>
+
             <div className="qv-specs">
               <div className="qv-spec"><span className="qv-spec-label">DESIGNATION</span><span>MA-1</span></div>
               <div className="qv-spec"><span className="qv-spec-label">ISSUED</span><span>1958, US Air Force</span></div>
               <div className="qv-spec"><span className="qv-spec-label">SHELL</span><span>100% flight nylon</span></div>
             </div>
-
-            <h3 className="qv-title">MA-1 Bomber Jacket (Heritage)</h3>
-            <div className="qv-price">$200.00</div>
 
             <p className="qv-desc">
               Constructed from mid-weight flight nylon with water resistance, the MA-1 fighter pilot
@@ -282,7 +283,14 @@ export default function Quickview({ onClose }) {
 
             <a href="#" className="qv-size-guide">VIEW SIZE GUIDE</a>
 
-            <button type="button" className="qv-add">Add to bag</button>
+            <div className="qv-buy">
+              <div className="qv-qty">
+                <button type="button" className="qv-qty-btn" aria-label="Decrease quantity" onClick={() => setQty((q) => Math.max(1, q - 1))}>−</button>
+                <span className="qv-qty-value" aria-live="polite">{qty}</span>
+                <button type="button" className="qv-qty-btn" aria-label="Increase quantity" onClick={() => setQty((q) => q + 1)}>+</button>
+              </div>
+              <button type="button" className="qv-add">Add to bag</button>
+            </div>
 
             <div className="qv-accordions">
               {ACCORDIONS.map((a) => {

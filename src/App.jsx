@@ -6,7 +6,13 @@ import { ARCHIVE, FOOTER } from './data.js'
 import { SocialIcons } from './icons.jsx'
 import { asset } from './asset.js'
 
-const SOCIAL = ['Instagram', 'Facebook', 'YouTube', 'TikTok', 'X']
+const SOCIAL = [
+  { name: 'Instagram', href: 'https://www.instagram.com/alphaindustries/?hl=en' },
+  { name: 'Facebook', href: 'https://www.facebook.com/AlphaIndustries/' },
+  { name: 'YouTube', href: 'https://www.youtube.com/channel/UC52os0ZHtSQRhw2PZRGgFrA' },
+  { name: 'TikTok', href: 'https://www.tiktok.com/@alphaindustries_us?lang=en' },
+  { name: 'X', href: 'https://x.com/AlphaIndustries' },
+]
 
 export default function App() {
   // Header state
@@ -280,10 +286,17 @@ function Footer() {
         <div className="footer-col">
           <div className="footer-heading">FOLLOW</div>
           <div className="footer-social">
-            {SOCIAL.map((name) => {
+            {SOCIAL.map(({ name, href }) => {
               const Icon = SocialIcons[name]
               return (
-                <a href="#" key={name} aria-label={name} className="footer-social-link">
+                <a
+                  href={href}
+                  key={name}
+                  aria-label={name}
+                  className="footer-social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Icon />
                 </a>
               )
