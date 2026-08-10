@@ -2,7 +2,9 @@
 // handoff's ARCHIVE, MENUS, MENU_IMG, FOOTER, SIZE_ROWS, ACCORDIONS and RESULTS
 // constants. Swap these for real product/nav data in production.
 
-const IMG = '/images'
+import { asset } from './asset.js'
+
+const IMG = asset('images')
 
 export const ARCHIVE = [
   { year: '1958', price: '$200.00', name: 'MA-1 Bomber Jacket', img: `${IMG}/ma1-black-frontview.png`, back: `${IMG}/ma1-black-backview.png` },

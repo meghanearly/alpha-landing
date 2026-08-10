@@ -7,8 +7,9 @@ import {
   SIZE_ROWS,
   UNAVAILABLE_SIZES,
 } from './data.js'
+import { asset } from './asset.js'
 
-const LOGO = '/images/alpha-industries-logo.png'
+const LOGO = asset('images/alpha-industries-logo.png')
 const EASE = 'cubic-bezier(0.2,0.6,0.2,1)'
 const DEFAULT_QUERY = 'How could I style this jacket for a night out with friends in NYC?'
 

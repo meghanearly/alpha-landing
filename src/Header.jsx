@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { MENUS, MENU_IMG, NAV_LEFT, NAV_RIGHT } from './data.js'
 import { SearchIcon, AccountIcon, BagIcon, MenuIcon } from './icons.jsx'
+import { asset } from './asset.js'
 
-const LOGO = '/images/alpha-industries-logo.png'
+const LOGO = asset('images/alpha-industries-logo.png')
 
 // Desktop hover mega-menu panel.
 function MegaMenu({ menu }) {

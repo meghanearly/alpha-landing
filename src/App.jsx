@@ -4,6 +4,7 @@ import Quickview from './Quickview.jsx'
 import { Reveal, ImageWell } from './ui.jsx'
 import { ARCHIVE, FOOTER } from './data.js'
 import { SocialIcons } from './icons.jsx'
+import { asset } from './asset.js'
 
 const SOCIAL = ['Instagram', 'Facebook', 'YouTube', 'TikTok', 'X']
 
@@ -104,8 +105,8 @@ export default function App() {
         <video
           ref={heroVideo}
           className="hero-video"
-          src="/hero.mp4"
-          poster="/hero-poster.jpg"
+          src={asset('hero.mp4')}
+          poster={asset('hero-poster.jpg')}
           muted
           autoPlay
           loop
@@ -147,7 +148,7 @@ export default function App() {
 
       {/* Campaign */}
       <section className="campaign" aria-label="Claimed. Not Given.">
-        <img className="campaign-img" src="/images/campaign.png" alt="" />
+        <img className="campaign-img" src={asset('images/campaign.png')} alt="" />
         <div className="campaign-scrim" />
         <Reveal className="campaign-bar">
           <div className="campaign-copy">
@@ -170,15 +171,15 @@ export default function App() {
         </div>
         <Reveal className="split-grid split-grid-men">
           <div className="split-hero">
-            <img className="zoom-img" src="/images/menswear.jpg" alt="" />
+            <img className="zoom-img" src={asset('images/menswear.jpg')} alt="" />
           </div>
           <div className="split-col">
             <div className="pair">
-              <ProductCard front="/images/mens-bag.png" baseScale={2.1} hoverScale={2.28} objectFit="contain" name="Nylon Messenger Bag" price="$100.00" onBookmark={openWishlist} />
-              <ProductCard front="/images/menswear-tee.png" baseScale={1.42} hoverScale={1.56} objectFit="contain" name="Relaxed Alpha Angels Tee" price="$35.00" onBookmark={openWishlist} />
+              <ProductCard front={asset('images/mens-bag.png')} baseScale={2.1} hoverScale={2.28} objectFit="contain" name="Nylon Messenger Bag" price="$100.00" onBookmark={openWishlist} />
+              <ProductCard front={asset('images/menswear-tee.png')} baseScale={1.42} hoverScale={1.56} objectFit="contain" name="Relaxed Alpha Angels Tee" price="$35.00" onBookmark={openWishlist} />
             </div>
             <div className="split-landscape">
-              <img className="zoom-img" src="/images/menswear-2.jpg" alt="" style={{ objectPosition: '50% 18%' }} />
+              <img className="zoom-img" src={asset('images/menswear-2.jpg')} alt="" style={{ objectPosition: '50% 18%' }} />
             </div>
           </div>
         </Reveal>
@@ -193,15 +194,15 @@ export default function App() {
         <Reveal className="split-grid split-grid-women">
           <div className="split-col">
             <div className="pair">
-              <ProductCard front="/images/womens-bag.png" baseScale={1.5} hoverScale={1.63} objectFit="contain" name="Studio Tote Bag Large" price="$65.00" onBookmark={openWishlist} />
-              <ProductCard front="/images/womens-skirt.png" baseScale={1.45} hoverScale={1.58} translateY="3%" objectFit="contain" name="Flight Nylon Mini Skirt Womens" price="$100.00" onBookmark={openWishlist} />
+              <ProductCard front={asset('images/womens-bag.png')} baseScale={1.5} hoverScale={1.63} objectFit="contain" name="Studio Tote Bag Large" price="$65.00" onBookmark={openWishlist} />
+              <ProductCard front={asset('images/womens-skirt.png')} baseScale={1.45} hoverScale={1.58} translateY="3%" objectFit="contain" name="Flight Nylon Mini Skirt Womens" price="$100.00" onBookmark={openWishlist} />
             </div>
             <div className="split-landscape">
-              <img className="zoom-img" src="/images/ne-skatepark.png" alt="" style={{ objectPosition: '50% 20%' }} />
+              <img className="zoom-img" src={asset('images/ne-skatepark.png')} alt="" style={{ objectPosition: '50% 20%' }} />
             </div>
           </div>
           <div className="split-hero split-hero-women">
-            <img className="zoom-img" src="/images/womenswear.jpg" alt="" />
+            <img className="zoom-img" src={asset('images/womenswear.jpg')} alt="" />
           </div>
         </Reveal>
       </section>
@@ -213,9 +214,9 @@ export default function App() {
           <a href="#" className="explore">EXPLORE</a>
         </div>
         <Reveal className="youth-grid">
-          <ProductCard front="/images/youth-1.png" baseScale={1} hoverScale={1.05} objectFit="cover" name="Youth N-3B Parka" price="$150.00" onBookmark={openWishlist} />
-          <ProductCard front="/images/youth-2.png" baseScale={1.42} hoverScale={1.56} objectFit="contain" name="Youth Quilted Liner Jacket" price="$85.00" onBookmark={openWishlist} />
-          <ProductCard front="/images/youth-3.png" baseScale={1} hoverScale={1.05} objectFit="cover" name="Youth NASA MA-1 Bomber" price="$125.00" onBookmark={openWishlist} />
+          <ProductCard front={asset('images/youth-1.png')} baseScale={1} hoverScale={1.05} objectFit="cover" name="Youth N-3B Parka" price="$150.00" onBookmark={openWishlist} />
+          <ProductCard front={asset('images/youth-2.png')} baseScale={1.42} hoverScale={1.56} objectFit="contain" name="Youth Quilted Liner Jacket" price="$85.00" onBookmark={openWishlist} />
+          <ProductCard front={asset('images/youth-3.png')} baseScale={1} hoverScale={1.05} objectFit="cover" name="Youth NASA MA-1 Bomber" price="$125.00" onBookmark={openWishlist} />
         </Reveal>
       </section>
 
@@ -291,7 +292,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <img className="footer-wordmark" src="/images/alpha-wordmark.svg" alt="Alpha Industries" />
+        <img className="footer-wordmark" src={asset('images/alpha-wordmark.svg')} alt="Alpha Industries" />
         <span className="footer-copy">© 2026 ALPHA INDUSTRIES — ALL RIGHTS RESERVED</span>
       </div>
     </footer>
