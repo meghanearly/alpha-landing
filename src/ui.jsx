@@ -60,19 +60,50 @@ export function ImageWell({
   alt = '',
   onOpen,
   onBookmark,
+  autoRevealOnMobile = false,
 }) {
   const [hover, setHover] = useState(false)
+  const wellRef = useRef(null)
+  const isTouch = useRef(false)
   const hs = hoverScale ?? baseScale * 1.14
   const t = translateY ? ` translateY(${translateY})` : ''
   const src = hover && back ? back : front
   const scale = hover ? hs : baseScale
 
+  // On touch devices (no hover), drive the reveal from scroll position instead
+  // of a tap: activate when the card is prominently in view, revert as it
+  // leaves. Desktop keeps its mouse-driven hover untouched.
+  useEffect(() => {
+    if (!autoRevealOnMobile || typeof window === 'undefined') return
+    if (!window.matchMedia('(hover: none)').matches) return
+    isTouch.current = true
+    const el = wellRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') return
+    let timer
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        const active = e.isIntersecting && e.intersectionRatio >= 0.6
+        clearTimeout(timer)
+        if (active) {
+          // Hold on the front briefly so it's seen before the flip/zoom.
+          timer = setTimeout(() => setHover(true), 550)
+        } else {
+          setHover(false)
+        }
+      }),
+      { threshold: [0, 0.6, 1] },
+    )
+    io.observe(el)
+    return () => { clearTimeout(timer); io.disconnect() }
+  }, [autoRevealOnMobile])
+
   return (
     <div
+      ref={wellRef}
       className="well"
       style={{ aspectRatio: aspect }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onMouseEnter={() => { if (!isTouch.current) setHover(true) }}
+      onMouseLeave={() => { if (!isTouch.current) setHover(false) }}
       onClick={onOpen}
     >
       <img

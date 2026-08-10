@@ -138,6 +138,7 @@ export default function App() {
                 alt={item.name}
                 onOpen={idx === 0 ? () => setQuickviewOpen(true) : undefined}
                 onBookmark={openWishlist}
+                autoRevealOnMobile
               />
               <div className="card-meta">
                 <div className="card-meta-row">
