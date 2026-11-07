@@ -22,6 +22,17 @@ export default function Quickview({ onClose }) {
   const [query, setQuery] = useState(null)
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState(null) // 'black' | 'orange' | null
+  const [runwayOpen, setRunwayOpen] = useState(false) // full-screen Style It overlay
+
+  // The Style It overlay (iframe) posts this message from its close button / Esc.
+  useEffect(() => {
+    if (!runwayOpen) return
+    const onMsg = (e) => { if (e.data && e.data.type === 'style-it-close') setRunwayOpen(false) }
+    window.addEventListener('message', onMsg)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { window.removeEventListener('message', onMsg); document.body.style.overflow = prev }
+  }, [runwayOpen])
 
   const spinRef = useRef(null)
   const shadowRef = useRef(null)
@@ -160,6 +171,7 @@ export default function Quickview({ onClose }) {
   const resultData = result ? RESULTS[result] : null
 
   return (
+    <>
     <div className="qv" role="dialog" aria-modal="true" aria-label="MA-1 Bomber Jacket quick view">
       <button type="button" className="qv-close" aria-label="Close" onClick={onClose}>×</button>
 
@@ -189,7 +201,7 @@ export default function Quickview({ onClose }) {
             </div>
 
             <div className="qv-actions">
-              <button type="button" className="style-it" onClick={toggleChat}>STYLE IT</button>
+              <button type="button" className="style-it" onClick={() => setRunwayOpen(true)}>STYLE IT</button>
               <div className="reversible">REVERSIBLE</div>
             </div>
 
@@ -316,5 +328,12 @@ export default function Quickview({ onClose }) {
         </div>
       </div>
     </div>
+
+    {runwayOpen && (
+      <div className="style-it-overlay" role="dialog" aria-modal="true" aria-label="Style It">
+        <iframe className="style-it-frame" title="Style It" src={asset('style-it.html')} />
+      </div>
+    )}
+    </>
   )
 }
